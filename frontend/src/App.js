@@ -16,9 +16,9 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/tweet/:id' element={<TweetPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/tweet/:id' element={<TweetPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       <Footer />

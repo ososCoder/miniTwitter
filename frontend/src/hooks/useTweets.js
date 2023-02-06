@@ -24,5 +24,9 @@ export const useTweets = () => {
     loadTweets();
   }, []);
 
-  return { tweets, loading, error };
+  const addTweet = (tweet) => {
+    setTweets([tweet, ...tweets]);
+  };
+
+  return { tweets, loading, error, addTweet };
 };

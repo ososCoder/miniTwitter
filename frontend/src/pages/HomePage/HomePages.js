@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useTweets } from '../../hooks/useTweets';
 
 export const HomePage = () => {
-  const { tweets, loading, error } = useTweets();
+  const { tweets, loading, error, addTweet } = useTweets();
   const { user } = useContext(AuthContext);
 
   if (loading) return <p>cargando tweets...</p>;
@@ -14,8 +14,8 @@ export const HomePage = () => {
 
   return (
     <section>
+      {user ? <NewTweet addTweet={addTweet} /> : null}
       <h2>Latest Tweets</h2>
-      {user ? <NewTweet /> : null}
       <TweetList tweets={tweets} />
     </section>
   );

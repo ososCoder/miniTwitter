@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { registerUserService } from '../../services';
 
 export const RegisterPage = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [pass1, setPass1] = useState('');
   const [pass2, setPass2] = useState('');
@@ -13,6 +17,15 @@ export const RegisterPage = () => {
     if (pass1 !== pass2) {
       setError('Passwords do not match');
       return;
+    }
+
+    try {
+      await registerUserService({ email, password: pass1 });
+
+      //Going to login with useNavigate
+      navigate('/login');
+    } catch (error) {
+      setError(error.message);
     }
   };
 
